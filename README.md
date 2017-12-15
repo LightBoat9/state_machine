@@ -9,11 +9,11 @@ See: [Godot Engine](https://godotengine.org/)
 This script functions as a state machine interface. First add the `StateMachine.gd` file to your project folder. Then simply extend the script you want to function as a state machine from `StateMachine.gd`
 
 ```
-extend "path_to_StateMachine.gd"
+extends "path_to_StateMachine.gd"
 ```
 For example in one of my projects
 ```
-extend "res://Interfaces/StateMachine.gd"
+extends "res://Interfaces/StateMachine.gd"
 ```
 See: [Godot Inheritance](https://godot.readthedocs.io/en/stable/learning/scripting/gdscript/gdscript_basics.html#inheritance)
 
