@@ -47,14 +47,14 @@ These names are concatenated to the end of the state name. So for an `idle` stat
 Each state should have exit conditions in one of the events. The exit condition tells the state when it should enter another state. Use caution when changing states exernally because this breaks some of the uses of a state machine. One simple example of an exit condition for the `idle` state is the recieving movement inputs.
 ```
 func idle_input(event)
-	if event.is_action_pressed("ui_walk"):
-		set_current_state("walk")
+    if event.is_action_pressed("ui_walk"):
+        set_current_state("walk")
 ```
 This will call `idle_exit` and `walk_enter`. Then from walk `idle` might be set again when colliding.
 ```
 func walk_update():
-	if is_colliding():
-    	set_current_state("idle")
+    if is_colliding():
+        set_current_state("idle")
 ```
 
 ## Simple Example
@@ -63,22 +63,22 @@ The extending state machine should end up looking something like this **pseudoco
 extends "res://StateMachine.gd"
 
 func _ready():
-	set_current_state("idle")
+    set_current_state("idle")
 
 func idle_enter():
-	set_animation("idle")
+    set_animation("idle")
     
 func idle_update():
-	if is_moving():
-    	set_current_state("move")
+    if is_moving():
+        set_current_state("move")
         
 func move_enter():
-	set_animation("move")
+    set_animation("move")
     
 func move_fixed_update():
-	if not is_moving():
-    	set_current_state("idle")
-        return
+    if not is_moving():
+         set_current_state("idle")
+         return
         
     move(velocity)
 
