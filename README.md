@@ -6,14 +6,14 @@ Developer: [Luke Sloop](https://github.com/LightBoat9)
 See: [Godot Engine](https://godotengine.org/) 
 
 ## Getting Started
-This script functions as a state machine interface. First add the `StateMachine.gd` file to your project folder. Then simply extend the script you want to function as a state machine from `StateMachine.gd`
+This script functions as a state machine superclass that allows inheriting subclasses to function as state machines. First add the `state_machine.gd` file to your project folder. Then simply extend the script you want to function as a state machine from `state_machine.gd`
 
 ```
-extends "path_to_StateMachine.gd"
+extends "path/to/state_machine.gd"
 ```
 For example in one of my projects
 ```
-extends "res://Interfaces/StateMachine.gd"
+extends "res://Super/StateMachine.gd"
 ```
 See: [Godot Inheritance](https://godot.readthedocs.io/en/stable/learning/scripting/gdscript/gdscript_basics.html#inheritance)
 
@@ -43,8 +43,17 @@ There are several events that each state has.
 
 These names are concatenated to the end of the state name. So for an `idle` state functions can be created with the names `idle_enter`, `idle_update`, `idle_input` etc.
 
+There are also global events, that are called no matter what the `current_state` is.
+- **global_enter** - called before the new state's `_enter` function
+- **global_exit** - called before the old state's `_exit` function
+- **global_pre_update** - called before the current state's `_update` function
+- **global_post_update** - called after the current state's `_update` function
+- **global_pre_fixed_update** - called before the current state's `_fixed_update` function
+- **global_post_fixed_update** - called after the current state's `_fixed_update` function
+- **global_input** - called before the current state's `_input` function, takes an `event` parameter
+
 ## Exit Conditions
-Each state should have exit conditions in one of the events. The exit condition tells the state when it should enter another state. Use caution when changing states exernally because this breaks some of the uses of a state machine. One simple example of an exit condition for the `idle` state is the recieving movement inputs.
+Each state should have exit conditions in one of the events. The exit condition tells the state when it should enter another state. Use caution when changing states exernally because this breaks some of the uses of a state machine and in most cases should be avoided. One simple example of an exit condition for an `idle` state is the recieving movement inputs.
 ```
 func idle_input(event)
     if event.is_action_pressed("ui_walk"):
