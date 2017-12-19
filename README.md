@@ -44,8 +44,8 @@ There are several events that each state has.
 - **_update ( delta )** - called every `process` call
 - **_fixed_update ( delta )** - called every `fixed_process` call
 - **_input ( InputEvent event )** - called every `input` call
-- **global_unhandled_input ( InputEvent event )** - called every `unhandled_input` call
-- **global_unhandled_key_input** ( InputEvent key_event )** - called every `unhandled_key_input` call
+- **_unhandled_input ( InputEvent event )** - called every `unhandled_input` call
+- **_unhandled_key_input** ( InputEvent key_event )** - called every `unhandled_key_input` call
 
 These names are concatenated to the end of the state name. So for an `idle` state functions can be created with the names `idle_enter`, `idle_update`, `idle_input` etc.
 
