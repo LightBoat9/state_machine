@@ -1,4 +1,4 @@
-# StateMachine
+# State Machine
 Simple state machine for Godot Engine written in GDScript
 
 Developer: [Luke Sloop](https://github.com/LightBoat9)
@@ -73,6 +73,9 @@ extends "res://StateMachine.gd"
 
 func _ready():
     set_current_state("idle")
+    
+func global_update():
+    check_for_collisions()    
 
 func idle_enter():
     set_animation("idle")
